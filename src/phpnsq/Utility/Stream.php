@@ -8,7 +8,9 @@ class Stream
 {
     public static function pfopen($host, $port)
     {
-        $socket = pfsockopen($host, $port, $errno, $errstr);
+        // FIXed pfsockopen -> fsockopen
+        // Unknown behavior
+        $socket = fsockopen($host, $port, $errno, $errstr);
         if (false === $socket) {
             throw new Exception("Could not connect to {$host}:{$port} [{$errno}]:[{$errstr}]");
         }
