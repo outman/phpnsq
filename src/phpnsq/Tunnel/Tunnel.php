@@ -57,7 +57,9 @@ class Tunnel
 
     public function __destruct()
     {
-        fclose($this->getSock());
+        if ($this->sock && is_resource($this->sock)) {
+            fclose($this->sock);
+        }
     }
 
     public function getSock()
